@@ -12,51 +12,25 @@
             <th scope="col">Estado</th>
           </tr>
         </thead>
-        <tbody>
 
-        {{#each skaters }}  
+        <tbody>
+        {{#each skaters}}
           <tr>
             <th scope="row">{{this.id}}</th>
             <td>
-                {{!-- <div></div> --}}
                 <img src="{{this.foto}}" alt="{{this.nombre}}">
             </td>
             <td>{{this.nombre}}</td>
             <td>{{this.anos_experiencia}}</td>
             <td>{{this.especialidad}}</td>
             {{#if this.estado}}
-                <td class="text-success font-weight-bold">Aprobado</td>
+                <td class="text-success font-weight-bold"></td>
             {{else}}
-                <td class="text-success font-weight-bold">Aprobado</td>
+                <td class="text-success font-weight-bold"></td>
             {{/if}}
           </tr>
         {{/each}}
 
-          <tr>
-          <th scope="row">1</th>
-          <td><div></div></td>
-          <td>Evelien Bouilliart</td>
-          <td>10</td>
-          <td>Heelflip</td>
-          <td class="text-success font-weight-bold">Aprobado</td>
-          </tr>
-          <tr>
-          <tr>
-            <th scope="row">2</th>
-            <td><div></div></td>
-            <td>Evelien Bouilliart</td>
-            <td>10</td>
-            <td>Heelflip</td>
-            <td class="text-success font-weight-bold">Aprobado</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td><div></div></td>
-            <td>Danny Way</td>
-            <td>8</td>
-            <td>Ollie</td>
-            <td class="text-warning font-weight-bold">En revisión</td>
-          </tr>
         </tbody>
       </table>
       <a href="#">Iniciar Sesión</a> |

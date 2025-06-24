@@ -3,16 +3,15 @@ import { create } from 'express-handlebars';
 import expressFileUpload from 'express-fileupload';
 import jwt from 'jsonwebtoken';
 import { fileURLToPath } from 'url';
-import { getSkaters } from './consultas.js'; // Asegúrate de que la ruta sea correcta
-import { dirname } from 'path';
+import { dirname } from "path";
 
 // // // creación de variables de entorno
 // // import { fileurltopath } from 'url'
-// // import { 
-// //     getskaters,
-// //     newskater,
-// // getskater
-// // } from './consultas.js';
+import { 
+    getSkaters,
+    newSkater,
+    // getSkaters
+} from './consultas.js';
 // import { dirname } from "path";
 
 // Variables que me permiten mostrar el path donde estoy en el proyecto
@@ -26,7 +25,7 @@ const secretKey ="clavesecreta2030";
 console.clear()
 
 //hacer la apertura de los distintos middlewares
-// app.use(express.urlencoded({ extended: false}))
+app.use(express.urlencoded({ extended: false}))
 app.use(express.json())
 app.use(express.static( `${__dirname}/public`))
 app.use('/css', express.static( `${__dirname}/public/css`))
@@ -58,10 +57,10 @@ app.set("view engine", "handlebars");
 //Creamos nuestras rutas
 app.get('/', async( req, res)=> {
     try{
-        // const skaters = await getSkaters()
+        const skaters = await getSkaters()
         res.render("Home",{
             layout : 'main',
-            // skaters
+            skaters
         })
     } catch (error){
         res.status(500).send({
@@ -72,45 +71,59 @@ app.get('/', async( req, res)=> {
 })
 
 
-// app.get('/registro', (req, res)=>{
-//     res.render('Registro')
-//         layout:'main'
-// })
+app.get('/registro', (req, res)=>{
+    res.render('Registro')
+        layout:'main'
+})
 
 // app.post('/skaters', (req, res)=>{
+//     try {
+//         console.log('Salida de req.body', req.body)
+//         res.send('Registro exitoso')
 
-//         // console.log('Salida de req.body', req.body)
-//         // console.log('Salida de req.files', req.files)
-//         const skater = req.body;
-//         if(Object.keys(req.files).length == 0){
-//             return res.status(400).send('No viene ninguna imagen')
-//         }
-//         const { files } = req;
-//         const { foto } = files;
-//         const { name } = foto;
-//         const urlFoto = `/uploads/${name}`
-
-//         // console.log('Salida de name-->', name)
-//         foto.mv(`${__dirname}/public${urlFoto}`, async (err)=>{
-//             try{
-//                 if(err){
-//                     console.error()
-//                 }else{
-//                     skater.foto = urlFoto
-//                     await newSkater(skater)
-//                     res.status(201).redirect('/login')
-//                 }
-//             } catch (error){
-//                 console.error ('Algo salio mal', error)
-//             }   
+//     } catch (error) {
+//         res.status(500).send({
+//             error:`Algo salio muy mal ${error}`,
+//             code:500
 //         })
+//     }
+// })
+
+app.post('/skaters',(req, res)=>{
+
+        // console.log('Salida de req.body', req.body)
+        // console.log('Salida de req.files', req.files)
+        const skater= req.body;
+        if(Object.keys(req.files).length == 0){
+            return res.status(400).send('No viene ninguna imagen')
+        }
+
+        const { files } = req;
+        const { foto } = files;
+        const { name } = foto;
+        const urlFoto = `/uploads/${name}`
+
+        // console.log('Salida de name-->', name)
+        foto.mv(`${__dirname}/public/${urlFoto}`, async (err)=>{
+            try{
+                if(err){
+                    console.error(err)
+                }else{
+                    skater.foto = urlFoto
+                    await newSkater (skater)
+                    res.status(201).redirect('/login')
+                }
+            } catch (error){
+                console.error ('Algo salio mal', error)
+            }   
+        })
+})
 
 
-// })
-// app.get('/login', (req, res)=>{
-//     res.render('Login')
-//         layout:'main'
-// })
+app.get('/login', (req, res)=>{
+    res.render('Login')
+        layout:'main'
+})
 
 // app.post("/login",async  (req, res)=>{
 //     console.log('XXXXXX--->', req.body)

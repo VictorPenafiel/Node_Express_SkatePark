@@ -1,65 +1,67 @@
-export const getSkaters = () => {
+import pkg from 'pg'
 
-}
-    //     res.render('Home', {
+const {Pool} = pkg
 
+const pool = new Pool({
+    user : "postgres",
+    host : "localhost",
+    password : "v",
+    database : "postgres",
+    port : 5432
+})
 
-// import pkg from 'pg'
-// const {Pool} = pkg
-// const pool = new Pool({
-//     user : "postgres",
-//     host : "localhost",
-//     password : "v",
-//     database : "skatepark",
-//     port : 5432
-// })
+// export const getSkaters = () => {
 
-// export const getSkaters = async () => {
-//     let client 
-//     const consulta = {
-//         name:"select-skater",
-//         text:"SELECT * FROM skaters ORDER BY id ASC",
-//         values
-//     }
-
-//     try {
-//         client = await pool.connect();
-//         const result = await client.query(consulta);
-//         return result
-//     } catch (error) {
-//         return console.error('Error durante la conexión o la consulta:', error.code , error.stack, error.message );
-//     }finally{
-//         if(client){
-//             client.release();
-//         }
-//     } 
 // }
 
-// export const newSkater  = async (skater) => {
-//     // const values = Object.values (skater)
-//     // const result = await pool.query (` INSERT INTO skaters ( email, nombre, password, anos_experiencia, especialidad, foto, estado) values ()
-//     // RETURNING *`)
+export const getSkaters = async () => {
+    let client 
+    const consulta = {
+        name:"select-skater",
+        text:"SELECT * FROM skaters ORDER BY id ASC",
+        values
+    }
 
-//     let client 
-//     const values = Object.values(skater);
-//     const consulta = {
-//         name:"insert-skater",
-//         text:"INSERT INTO skaters ( email, nombre, password, anos_experiencia, especialidad, foto, estado) values ($1,$2,$3,$4,$5,$6, false) RETURNING *",
-//         values
-//     }
+    try {
+        client = await pool.connect();
+        const result = await client.query(consulta);
+        return result.rows
+    } catch (error) {
+        return console.error('Error durante la conexión o la consulta:', error.code , error.stack, error.message );
+    }finally{
+        if(client){
+            client.release();
+        }
+    } 
+}
 
-//     try {
-//         client = await pool.connect();
-//         const result = await client.query(consulta);
-//         return result
-//     } catch (error) {
-//         return console.error('Error durante la conexión o la consulta:', error.code , error.stack, error.message );
-//     }finally{
-//         if(client){
-//             client.release();
-//         }
-//     } 
-//     }
+// export const newSkater = (obj) => {
+//     console.log('Salida de Obj-->', obj)
+// }
+
+
+export const newSkater  = async (skater) => {
+
+    let client 
+    const values = Object.values(skater);
+    const consulta = {
+        name:"insert-skater",
+        text:"INSERT INTO skaters ( email, nombre, password, anos_experiencia, especialidad, foto, estado) values ($1,$2,$3,$4,$5,$6, false) RETURNING *",
+        values
+    }
+
+    try {
+        client = await pool.connect();
+        const result = await client.query(consulta);
+        return result
+    } catch (error) {
+        return console.error('Error durante la conexión o la consulta:', error.code , error.stack, error.message );
+    }finally{
+        if(client){
+            client.release();
+        }
+    } 
+}
     
 // export const getSkater  = async (email, password) => {
 //     const result = await pool.query(
@@ -78,3 +80,7 @@ export const getSkaters = () => {
 //         return
 //     }
 // }
+
+
+// }
+//         res.render('Home', {
