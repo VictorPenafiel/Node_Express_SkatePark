@@ -25,7 +25,7 @@ const secretKey ="clavesecreta2030";
 console.clear()
 
 //hacer la apertura de los distintos middlewares
-app.use(express.urlencoded({ extended: false}))
+// app.use(express.urlencoded({ extended: false}))
 app.use(express.json())
 app.use(express.static( `${__dirname}/public`))
 app.use('/css', express.static( `${__dirname}/public/css`))
@@ -72,8 +72,9 @@ app.get('/', async( req, res)=> {
 
 
 app.get('/registro', (req, res)=>{
-    res.render('Registro')
+    res.render('Registro', {
         layout:'main'
+    })
 })
 
 // app.post('/skaters', (req, res)=>{
@@ -125,29 +126,29 @@ app.get('/login', (req, res)=>{
         layout:'main'
 })
 
-// app.post("/login",async  (req, res)=>{
-//     console.log('XXXXXX--->', req.body)
-//     const { email, password} = req.body
+app.post("/login",async  (req, res)=>{
+    console.log('XXXXXX--->', req.body)
+    const { email, password} = req.body
     
-//     try {
-//         const skater =await getSkater(email, password)
-//         if(skater){
-//             const token = jwt.sign(
-//                 {
-//                     exp : Math.floor(Date.now() / 1000) + 240, // Dura 4 minutos
-//                 },
-//                 secretKey
-//             )
-//             res.send({token})
-//         }else{
-//             res.status(401).send({msg:"Usuario y contraseña inavalida"})
-//         }
-//     } catch (error) {
-//         console.error ('Algo salio mal', error)
-//     }
+    try {
+        const skater =await getSkater(email, password)
+        if(skater){
+            const token = jwt.sign(
+                {
+                    exp : Math.floor(Date.now() / 1000) + 240, // Dura 4 minutos
+                },
+                secretKey
+            )
+            res.send({token})
+        }else{
+            res.status(401).send({msg:"Usuario y contraseña inavalida"})
+        }
+    } catch (error) {
+        console.error ('Algo salio mal', error)
+    }
 
-//     // res.send({email, password})
-// })
+    // res.send({email, password})
+})
 
 // Habilitamos un puerto para que el server escuche y responda a traves de un puerto en especifico
 app.listen( puerto , () => console.log(`Servidor arriba en el puerto ${puerto}`))

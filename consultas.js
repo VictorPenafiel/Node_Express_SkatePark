@@ -17,9 +17,8 @@ const pool = new Pool({
 export const getSkaters = async () => {
     let client 
     const consulta = {
-        name:"select-skater",
+        name:"select-skaters",
         text:"SELECT * FROM skaters ORDER BY id ASC",
-        values
     }
 
     try {
@@ -46,7 +45,7 @@ export const newSkater  = async (skater) => {
     const values = Object.values(skater);
     const consulta = {
         name:"insert-skater",
-        text:"INSERT INTO skaters ( email, nombre, password, anos_experiencia, especialidad, foto, estado) values ($1,$2,$3,$4,$5,$6, false) RETURNING *",
+        text:"INSERT INTO skaters ( email, nombre, password, anos_experiencia, especialidad, foto, estado) values ($1,$2,$3,$4,$5,$6,false) RETURNING *",
         values
     }
 
