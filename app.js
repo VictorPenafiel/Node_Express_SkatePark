@@ -77,18 +77,18 @@ app.get('/registro', (req, res)=>{
     })
 })
 
-// app.post('/skaters', (req, res)=>{
-//     try {
-//         console.log('Salida de req.body', req.body)
-//         res.send('Registro exitoso')
+app.post('/skaters', (req, res)=>{
+    try {
+        console.log('Salida de req.body', req.body)
+        res.send('Registro exitoso')
 
-//     } catch (error) {
-//         res.status(500).send({
-//             error:`Algo salio muy mal ${error}`,
-//             code:500
-//         })
-//     }
-// })
+    } catch (error) {
+        res.status(500).send({
+            error:`Algo salio muy mal ${error}`,
+            code:500
+        })
+    }
+})
 
 app.post('/skaters',(req, res)=>{
 
@@ -131,7 +131,7 @@ app.post("/login",async  (req, res)=>{
     const { email, password} = req.body
     
     try {
-        const skater =await getSkater(email, password)
+        const skater =await getSkaters(email, password)
         if(skater){
             const token = jwt.sign(
                 {

@@ -62,24 +62,23 @@ export const newSkater  = async (skater) => {
     } 
 }
     
-// export const getSkater  = async (email, password) => {
-//     const result = await pool.query(
-//         `SELECT * FROM  skaters WHERE email = '${email}' AND password = '${password}'`
-//     );
-    
-//     return result.rows[0];
-
-// }
-        // const values = Object.values (skater)
-
-//     try{
-//         client = await pool.connect();
-//         const result = await client.query(consulta);
-//         console.log('Salida de result-->' result)
-//         return
-//     }
-// }
-
-
-// }
-//         res.render('Home', {
+export const getSkater = async (email, password) => {
+    let client; 
+    try {
+        client = await pool.connect(); 
+        const consulta = {
+            name: "get-skater-by-credentials",
+            text: "SELECT * FROM skaters WHERE email = $1 AND password = $2",
+            values: [email, password]
+        };
+        const result = await client.query(consulta);
+        return result.rows[0];
+    } catch (error) {
+        console.error('Error durante la conexión o la consulta en getSkater:', error.code, error.stack, error.message);
+        throw error;
+    } finally {
+        if (client) {
+            client.release();
+        }
+    }
+};

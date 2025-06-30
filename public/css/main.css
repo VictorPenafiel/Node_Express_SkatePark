@@ -1,40 +1,95 @@
+:root {
+    /* Definición de la paleta de colores como variables CSS */
+    --prussian-blue: #003153;
+    --warm-light-gray: #E0E6E9;
+    --cool-medium-gray: #708090;
+    --off-white: #F8F8F2;
+    --soft-salmon-accent: #D8A79B;
+}
+
 body {
-    background: #ffdc43;
-    color: #4a4a4a;
-    text-shadow: 0px 0px 1px black;
-    font-family: sans-serif;
+    background: var(--warm-light-gray); /* Fondo suave para todo el cuerpo */
+    color: var(--cool-medium-gray); /* Texto principal en gris medio para buena legibilidad */
+    text-shadow: 0px 0px 0.5px rgba(0, 0, 0, 0.2); /* Sutil sombra de texto para definición */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente más moderna y legible */
     text-align: center;
     padding: 40px 100px;
-    
-  }
-  
-  h1{
-      font-style: italic;
-  }
-  td, th{
-      vertical-align: middle!important;
-  }
-  td div{
-      background-size: cover;
-      width: 60px;
-      height: 60px;
-  }
-  
-  tbody tr:nth-child(1) td div{
-          background-image: url("/tony.jpg");
-  }
-  
-  tbody tr:nth-child(2) td div{
-      background-image: url("/Evelien.jpg");
-  }
-  
-  tbody tr:nth-child(3) td div{
-      background-image: url("/Danny.jpg");
-  }
-  
-  input{
-      text-align: center;
-  }
+    line-height: 1.6; /* Mejora la legibilidad de párrafos largos */
+}
+
+h1 {
+    font-style: italic;
+    color: var(--prussian-blue); /* Títulos en Azul de Prusia para destacarse */
+    margin-bottom: 25px; /* Espacio debajo del título */
+}
+
+/* Estilos para tablas */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Elimina el espacio entre celdas */
+    margin-top: 30px;
+    background-color: var(--off-white); /* Fondo claro para la tabla */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para darle profundidad */
+    border-radius: 8px; /* Bordes ligeramente redondeados */
+    overflow: hidden; /* Asegura que la sombra y el borde redondeado se apliquen bien */
+}
+
+th {
+    background-color: var(--prussian-blue); /* Cabeceras de tabla en Azul de Prusia */
+    color: var(--off-white); /* Texto de cabecera en blanco roto */
+    padding: 15px;
+    text-align: left;
+}
+
+td {
+    padding: 15px;
+    border-bottom: 1px solid var(--warm-light-gray); /* Líneas divisorias suaves */
+    vertical-align: middle !important;
+}
+
+/* Estilo para la última fila de la tabla */
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+td div {
+    background-size: cover;
+    background-position: center; /* Centra la imagen dentro del div */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* Hace que los contenedores de imagen sean redondos */
+    overflow: hidden; /* Asegura que la imagen se recorte en el círculo */
+    border: 2px solid var(--soft-salmon-accent); /* Borde de acento alrededor de las imágenes */
+    display: inline-block; /* Permite centrar si es necesario */
+}
+
+/* Imágenes de perfil */
+tbody tr:nth-child(1) td div {
+    background-image: url("/tony.jpg");
+}
+
+tbody tr:nth-child(2) td div {
+    background-image: url("/Evelien.jpg");
+}
+
+tbody tr:nth-child(3) td div {
+    background-image: url("/Danny.jpg");
+}
+
+input {
+    text-align: center;
+    padding: 10px 15px;
+    border: 1px solid var(--cool-medium-gray);
+    border-radius: 5px;
+    font-size: 16px;
+    color: var(--prussian-blue);
+    outline: none; /* Elimina el contorno al enfocar */
+}
+
+input:focus {
+    border-color: var(--soft-salmon-accent); /* Borde de acento al enfocar */
+    box-shadow: 0 0 5px rgba(216, 167, 155, 0.5); /* Sombra sutil al enfocar */
+}
 
 img {
     width: 80px;
@@ -42,4 +97,6 @@ img {
     object-fit: cover;
     object-position: center;
     border-radius: 100%;
+    border: 3px solid var(--soft-salmon-accent); /* Borde de acento para imágenes grandes */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15); /* Sombra sutil para imágenes */
 }
