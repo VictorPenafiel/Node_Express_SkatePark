@@ -29,6 +29,38 @@ registrados y su estado de revisión.
 -  La vista del administrador debe mostrar los participantes registrados y permitir
 aprobarlos para cambiar su estado.
 
+## Comenzando 🚀
+
+_Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
+
+Mira **Deployment** para conocer como desplegar el proyecto.
+
+
+### Pre-requisitos 📋
+
+_Que cosas necesitas para instalar el software y como instalarlas_
+
+```
+Visual Studio Code, PyCharm
+```
+```
+Python 3
+```
+```
+Git, Github
+```
+```
+variables de entorno para python
+```
+### Instalación 🔧
+
+```
+Importar proyecto al IDE de preferencia para ejecutar.
+```
+
+## Deployment 📦
+
+Realizar un fork o clon del proyecto, importar al IDE de preferencia, para ejecutar en consola realizar el build (empaquetado) de la aplicación.
 ## Instrucciones para Cargar la Base de Datos 
 
 Se debe persistir la información de los usuarios en PostgreSQL, por lo que deberás usar las
@@ -70,3 +102,23 @@ Login
 Terminal
 
 ![Imagenes](public/uploads/Screenshot_3.png)
+
+## Construido con 🛠️
+
+* [Python](https://www.python.org/downloads/)
+* [Visual Studio Code](https://code.visualstudio.com/)
+* [Git](https://git-scm.com/)
+* [GitHub](https://github.com/)
+
+
+## Versionado 📌
+
+## Autores ✒️
+
+https://github.com/victorpenafiel
+
+## Licencia 📄
+
+Ningún derecho reservado.  [Creative Commons Atribución/Reconocimiento 4.0 ](https://creativecommons.org/licenses/by/4.0/deed.es).
+
+Este proyecto está bajo la Licencia - mira el archivo [LICENSE.md](LICENSE.md) para detalles
